@@ -1,0 +1,9 @@
+--cpu Cortex-M0+
+".\objects\exercise_1.o"
+".\objects\exercise_2.o"
+".\objects\startup_mkl25z4.o"
+".\objects\system_mkl25z4.o"
+--strict --scatter ".\Objects\Lab_1.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Lab_1.map" -o .\Objects\Lab_1.axf

@@ -1,0 +1,92 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; EXPERIMENT_1 ;Title for the code
+    2 00000000 AAAAAAAA 
+                       equate_val
+                               EQU              0xAAAAAAAA  ;Define equate_val 
+                                                            equal to 0xAAAAAAAA
+                                                            
+    3 00000000                 AREA             code_area, CODE, READONLY ;Tell
+                                                            ing uVision that th
+                                                            is part is code reg
+                                                            ion
+    4 00000000                 EXPORT           __main      ;exporting to main
+    5 00000000                 ALIGN                        ;To align everythin
+                                                            g automatically
+    6 00000000                 ENTRY
+    7 00000000         ;__main PROC ;Starting of the main function
+    8 00000000 4905            LDR              R1,const_val ;Load register r1 
+                                                            with the constant v
+                                                            alue 0X55555555
+    9 00000002 4806            LDR              R0,=const_val ;Load register r0
+                                                             with the address o
+                                                            f the constant valu
+                                                            e
+   10 00000004 6801            LDR              R1,[R0]     ;Load the contents 
+                                                            found in r0 into r1
+                                                            
+   11 00000006 8801            LDRH             R1,[R0]     ;Load the contents 
+                                                            found in r0 into r1
+                                                             but only the last 
+                                                            half word (16 bits)
+                                                             
+   12 00000008 7801            LDRB             R1,[R0]     ;Load the contents 
+                                                            found in r0 into r1
+                                                             but only the last 
+                                                            byte (8 bits) 
+   13 0000000A 4805            LDR              R0,=equate_val ;Load  into r0, 
+                                                            the value of the co
+                                                            nstant defined in t
+                                                            he begining (0xAAAA
+                                                            AAAA)
+   14 0000000C 4903            LDR              R1,=const_val ;Load  into r1, t
+                                                            he address of the c
+                                                            onstant_val variabl
+                                                            e stored in the mem
+                                                            ory
+   15 0000000E 6008            STR              R0,[R1]     ;Trying to store th
+                                                            e contents of r0 in
+                                                            to the memory locat
+                                                            ion found inside r1
+                                                            
+   16 00000010         ;But failing to do so due to the read only nature of the
+                        code region and the variable was declared inside the co
+                       de region
+   17 00000010 4602            MOV              R2,R0       ;Move the contents 
+                                                            of r0 into r2
+   18 00000012 2200            MOVS             R2,#0       ;Move and set the f
+                                                            lags for moving 0 i
+                                                            nto the register r2
+                                                            
+   19 00000014 E000            B                __main      ;Branch and go to t
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                                                            he __main part agai
+                                                            n.... This creates 
+                                                            an infinite loop
+   20 00000016                 ENDP
+   21 00000016         
+   22 00000016         
+   23 00000016 00 00 55555555 
+                       const_val
+                               DCD              0X55555555
+   24 0000001C         
+   25 0000001C 00000000 
+              AAAAAAAA 
+              00000000         AREA             data_area, DATA, READWRITE
+   26 00000000                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
+work --depend=.\objects\exercise_1.d -o.\objects\exercise_1.o -I.\RTE\Device\MK
+L25Z128xxx4 -I.\RTE\_Target_1 -IC:\Users\super\AppData\Local\Arm\Packs\ARM\CMSI
+S\5.6.0\CMSIS\Core\Include -IC:\Users\super\AppData\Local\Arm\Packs\Keil\Kineti
+s_KLxx_DFP\1.15.0\Device\Include --predefine="__EVAL SETA 1" --predefine="__UVI
+SION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="MKL25Z128xxx4 SE
+TA 1" --list=.\listings\exercise_1.lst Exercise_1.s

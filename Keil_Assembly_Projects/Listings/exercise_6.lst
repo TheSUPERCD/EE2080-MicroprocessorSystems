@@ -1,0 +1,103 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; EXPERIMENT_6 Title for the code
+    2 00000000 00000004 
+                       n_val   EQU              4           ;Define equate_val 
+                                                            equal to 0xAAAAAAAA
+                                                            
+    3 00000000                 AREA             code_area, CODE, READONLY ;Tell
+                                                            ing uVision that th
+                                                            is part is code reg
+                                                            ion
+    4 00000000                 EXPORT           __main      ;exporting to main
+    5 00000000                 ALIGN                        ;To align everythin
+                                                            g automatically
+    6 00000000                 ENTRY
+    7 00000000         __main  PROC                         ;Starting of the ma
+                                                            in function
+    8 00000000 2001            MOVS             R0, #1      ; result
+    9 00000002 2101            MOVS             R1, #1      ; i
+   10 00000004 2904    loop    CMP              R1, #n_val  ; check if i == n_v
+                                                            al
+   11 00000006 D002            BEQ              _end        ; banch to _end if 
+                                                            i value is equal to
+                                                             n_val
+   12 00000008 1C49            ADDS             R1, R1, #1  ; incrementing i va
+                                                            lue by 1
+   13 0000000A 4348            MULS             R0, R1, R0  ; multiply result w
+                                                            ith incremented val
+                                                            ue of i
+   14 0000000C E7FA            B                loop        ; go back to loop a
+                                                            nd check the branch
+                                                            ing condition
+   15 0000000E E7FE    _end    B                _end        ; infinite end loop
+                                                            
+   16 00000010                 ENDP
+   17 00000010                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
+work --depend=.\objects\exercise_6.d -o.\objects\exercise_6.o -I.\RTE\Device\MK
+L25Z128xxx4 -I.\RTE\_Target_1 -IC:\Users\super\AppData\Local\Arm\Packs\ARM\CMSI
+S\5.6.0\CMSIS\Core\Include -IC:\Users\super\AppData\Local\Arm\Packs\Keil\Kineti
+s_KLxx_DFP\1.15.0\Device\Include --predefine="__EVAL SETA 1" --predefine="__UVI
+SION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="MKL25Z128xxx4 SE
+TA 1" --list=.\listings\exercise_6.lst Exercise_6.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 7 in file Exercise_6.s
+   Uses
+      At line 4 in file Exercise_6.s
+Comment: __main used once
+_end 0000000E
+
+Symbol: _end
+   Definitions
+      At line 15 in file Exercise_6.s
+   Uses
+      At line 11 in file Exercise_6.s
+      At line 15 in file Exercise_6.s
+
+code_area 00000000
+
+Symbol: code_area
+   Definitions
+      At line 3 in file Exercise_6.s
+   Uses
+      None
+Comment: code_area unused
+loop 00000004
+
+Symbol: loop
+   Definitions
+      At line 10 in file Exercise_6.s
+   Uses
+      At line 14 in file Exercise_6.s
+Comment: loop used once
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+n_val 00000004
+
+Symbol: n_val
+   Definitions
+      At line 2 in file Exercise_6.s
+   Uses
+      At line 10 in file Exercise_6.s
+Comment: n_val used once
+1 symbol
+339 symbols in table

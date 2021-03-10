@@ -1,0 +1,84 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Provide a title for the program mentioning its purpose
+    2 00000000                 AREA             code_area, CODE, READONLY
+    3 00000000                 EXPORT           __main
+    4 00000000                 ALIGN
+    5 00000000                 ENTRY
+    6 00000000         __main  PROC
+    7 00000000 2003    rst_cnt MOVS             R0,#3       ;move the value 3 i
+                                                            nto register R0
+    8 00000002 3801    dec_cnt SUBS             R0,#1       ;subtract with set 
+                                                            flags R0 = R0 - 1
+    9 00000004 D1FD            BNE              dec_cnt     ;if the zero flag i
+                                                            s not set, go back 
+                                                            to dec_cnt and do t
+                                                            hat operation again
+                                                            
+   10 00000006 E7FB            B                rst_cnt     ;if the zero flag i
+                                                            s set, go to rst_cn
+                                                            t and keep looping 
+                                                            forever
+   11 00000008 E7FE    here    B                here        ;infinite ending lo
+                                                            op
+   12 0000000A                 ENDP
+   13 0000000A                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
+work --depend=.\objects\exercise_4.d -o.\objects\exercise_4.o -I.\RTE\Device\MK
+L25Z128xxx4 -I.\RTE\_Target_1 -IC:\Users\super\AppData\Local\Arm\Packs\ARM\CMSI
+S\5.6.0\CMSIS\Core\Include -IC:\Users\super\AppData\Local\Arm\Packs\Keil\Kineti
+s_KLxx_DFP\1.15.0\Device\Include --predefine="__EVAL SETA 1" --predefine="__UVI
+SION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="MKL25Z128xxx4 SE
+TA 1" --list=.\listings\exercise_4.lst Exercise_4.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 6 in file Exercise_4.s
+   Uses
+      At line 3 in file Exercise_4.s
+Comment: __main used once
+code_area 00000000
+
+Symbol: code_area
+   Definitions
+      At line 2 in file Exercise_4.s
+   Uses
+      None
+Comment: code_area unused
+dec_cnt 00000002
+
+Symbol: dec_cnt
+   Definitions
+      At line 8 in file Exercise_4.s
+   Uses
+      At line 9 in file Exercise_4.s
+Comment: dec_cnt used once
+here 00000008
+
+Symbol: here
+   Definitions
+      At line 11 in file Exercise_4.s
+   Uses
+      At line 11 in file Exercise_4.s
+Comment: here used once
+rst_cnt 00000000
+
+Symbol: rst_cnt
+   Definitions
+      At line 7 in file Exercise_4.s
+   Uses
+      At line 10 in file Exercise_4.s
+Comment: rst_cnt used once
+5 symbols
+339 symbols in table

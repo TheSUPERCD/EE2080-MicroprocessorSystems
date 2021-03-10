@@ -1,0 +1,164 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Provide a title for the program mentioning its purpose
+    2 00000000 00000032 
+                       value1  EQU              50          ;Define value1 as 5
+                                                            0
+    3 00000000 0000007B 
+                       value2  EQU              123         ;Define value2 as 1
+                                                            23
+    4 00000000 FFFFFFF0 
+                       value3  EQU              0xFFFFFFF0  ;Define value2 as 0
+                                                            xFFFFFFF0
+    5 00000000                 AREA             code_area, CODE, READONLY
+    6 00000000                 EXPORT           __main
+    7 00000000                 ALIGN
+    8 00000000                 ENTRY
+    9 00000000         __main  PROC
+   10 00000000 2000            MOVS             R0,#0       ;Move the value 0 i
+                                                            nto R0
+   11 00000002 490A            LDR              R1,=value1  ;Load the register 
+                                                            R1 with value1
+   12 00000004 4A0A            LDR              R2,=value2  ;Load the register 
+                                                            R2 with value2
+   13 00000006 4B0B            LDR              R3,=value3  ;Load the register 
+                                                            R3 with value3
+   14 00000008 F380 8800       MSR              APSR,R0     ;Loading the specia
+                                                            l register APSR-App
+                                                            lication PSR with t
+                                                            he value stored in 
+                                                            R0
+   15 0000000C 1852            ADDS             R2,R1       ;Add with set R2+R1
+                                                             and store in R2
+   16 0000000E 1A52            SUBS             R2,R1       ;Subtract with set 
+                                                            R2-R1 and store in 
+                                                            R2
+   17 00000010 185B            ADDS             R3,R1       ;Add with set R3+R1
+                                                             and store in R3
+   18 00000012 1A5B            SUBS             R3,R1       ;Subtract with set 
+                                                            R3-R1 and store in 
+                                                            R3
+   19 00000014 F380 8800       MSR              APSR,R0     ;Loading the specia
+                                                            l register APSR-App
+                                                            lication PSR with t
+                                                            he value stored in 
+                                                            R0
+   20 00000018 440B            ADD              R3,R1       ;Add with set R3+R1
+                                                             and store in R3
+   21 0000001A 4291            CMP              R1,R2       ;Compare R1 with R2
+                                                             and set flags
+   22 0000001C 428A            CMP              R2,R1       ;Compare R2 with R1
+                                                             and set flags
+   23 0000001E 4289            CMP              R1,R1       ;Compare R1 with R1
+                                                             and set flags
+   24 00000020 2940            CMP              R1,#0x40    ;Compare R1 with 0x
+                                                            40 and set flags
+   25 00000022 2A40            CMP              R2,#0x40    ;Compare R2 with 0x
+                                                            40 and set flags
+   26 00000024 42D9            CMN              R1,R3       ;Compare R1 with ne
+                                                            gative of R3 and se
+                                                            t flags
+   27 00000026 42D9            CMN              R1,R3       ;Compare R1 with ne
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                                                            gative of R3 and se
+                                                            t flags
+   28 00000028 E7FE    here    B                here        ;infinite end loop
+   29 0000002A                 ENDP
+   30 0000002A 00 00 00000032 
+              0000007B 
+              FFFFFFF0         AREA             data_area, DATA, READWRITE
+   31 00000000                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
+work --depend=.\objects\exercise_2.d -o.\objects\exercise_2.o -I.\RTE\Device\MK
+L25Z128xxx4 -I.\RTE\_Target_1 -IC:\Users\super\AppData\Local\Arm\Packs\ARM\CMSI
+S\5.6.0\CMSIS\Core\Include -IC:\Users\super\AppData\Local\Arm\Packs\Keil\Kineti
+s_KLxx_DFP\1.15.0\Device\Include --predefine="__EVAL SETA 1" --predefine="__UVI
+SION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="MKL25Z128xxx4 SE
+TA 1" --list=.\listings\exercise_2.lst Exercise_2.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 9 in file Exercise_2.s
+   Uses
+      At line 6 in file Exercise_2.s
+Comment: __main used once
+code_area 00000000
+
+Symbol: code_area
+   Definitions
+      At line 5 in file Exercise_2.s
+   Uses
+      None
+Comment: code_area unused
+here 00000028
+
+Symbol: here
+   Definitions
+      At line 28 in file Exercise_2.s
+   Uses
+      At line 28 in file Exercise_2.s
+Comment: here used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+data_area 00000000
+
+Symbol: data_area
+   Definitions
+      At line 30 in file Exercise_2.s
+   Uses
+      None
+Comment: data_area unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+value1 00000032
+
+Symbol: value1
+   Definitions
+      At line 2 in file Exercise_2.s
+   Uses
+      At line 11 in file Exercise_2.s
+Comment: value1 used once
+value2 0000007B
+
+Symbol: value2
+   Definitions
+      At line 3 in file Exercise_2.s
+   Uses
+      At line 12 in file Exercise_2.s
+Comment: value2 used once
+value3 FFFFFFF0
+
+Symbol: value3
+   Definitions
+      At line 4 in file Exercise_2.s
+   Uses
+      At line 13 in file Exercise_2.s
+Comment: value3 used once
+3 symbols
+343 symbols in table
